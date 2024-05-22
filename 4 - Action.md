@@ -427,3 +427,329 @@ In this example, `CustomAction` will only be invoked if the query string contain
 | Custom Action Selectors       | Allows creating custom selection logic for action methods.                                     | `public class CustomActionSelectorAttribute : ActionMethodSelectorAttribute { //... }`                            |
 
 Action selectors provide a flexible way to control which methods are exposed as actions and under what conditions they can be invoked. This allows for greater control over the routing and handling of HTTP requests in an ASP.NET MVC application.
+
+## **Action Filter:**
+
+In ASP.NET MVC, action filters are used to inject extra processing logic before and after action method execution. They provide a way to apply cross-cutting concerns such as logging, authorization, caching, and more. Action filters can be applied globally, at the controller level, or at the action method level.
+
+### Types of Action Filters
+
+ASP.NET MVC provides several types of action filters:
+
+1. **Authorization Filters**
+2. **Action Filters**
+3. **Result Filters**
+4. **Exception Filters**
+
+### 1. Authorization Filters
+
+Authorization filters are used to control access to action methods. They are executed before any other filters.
+
+**Example:**
+```csharp
+public class CustomAuthorizeAttribute : AuthorizeAttribute
+{
+    protected override bool AuthorizeCore(HttpContextBase httpContext)
+    {
+        // Custom authorization logic
+        return httpContext.User.Identity.IsAuthenticated;
+    }
+
+    protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
+    {
+        // Custom logic for handling unauthorized requests
+        filterContext.Result = new RedirectResult("~/Account/Login");
+    }
+}
+```
+Usage:
+```csharp
+[CustomAuthorize]
+public ActionResult SecureAction()
+{
+    return View();
+}
+```
+
+### 2. Action Filters
+
+Action filters run before and after the execution of action methods. They can be used for tasks such as logging, input validation, or modifying the action result.
+
+**Example:**
+```csharp
+public class LogActionFilter : ActionFilterAttribute
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        // Code to run before the action method execution
+        Log("OnActionExecuting", filterContext.RouteData);
+    }
+
+    public override void OnActionExecuted(ActionExecutedContext filterContext)
+    {
+        // Code to run after the action method execution
+        Log("OnActionExecuted", filterContext.RouteData);
+    }
+
+    private void Log(string methodName, RouteData routeData)
+    {
+        // Logging logic
+        var controllerName = routeData.Values["controller"];
+        var actionName = routeData.Values["action"];
+        // Log the details
+    }
+}
+```
+Usage:
+```csharp
+[LogActionFilter]
+public ActionResult Index()
+{
+    return View();
+}
+```
+
+### 3. Result Filters
+
+Result filters run before and after the execution of the action result. They are useful for modifying the response before it is sent to the client.
+
+**Example:**
+```csharp
+public class CustomResultFilter : ResultFilterAttribute
+{
+    public override void OnResultExecuting(ResultExecutingContext filterContext)
+    {
+        // Code to run before the result execution
+    }
+
+    public override void OnResultExecuted(ResultExecutedContext filterContext)
+    {
+        // Code to run after the result execution
+    }
+}
+```
+Usage:
+```csharp
+[CustomResultFilter]
+public ActionResult Index()
+{
+    return View();
+}
+```
+
+### 4. Exception Filters
+
+Exception filters are used to handle exceptions thrown by action methods. They provide a way to log exceptions or return custom error responses.
+
+**Example:**
+```csharp
+public class CustomExceptionFilter : FilterAttribute, IExceptionFilter
+{
+    public void OnException(ExceptionContext filterContext)
+    {
+        // Handle the exception
+        filterContext.ExceptionHandled = true;
+        filterContext.Result = new ViewResult
+        {
+            ViewName = "Error"
+        };
+    }
+}
+```
+Usage:
+```csharp
+[CustomExceptionFilter]
+public ActionResult Index()
+{
+    throw new Exception("Test exception");
+    return View();
+}
+```
+
+### Applying Filters
+
+Filters can be applied in different ways:
+
+1. **Globally**: In `Global.asax`
+```csharp
+public class MvcApplication : System.Web.HttpApplication
+{
+    protected void Application_Start()
+    {
+        GlobalFilters.Filters.Add(new CustomExceptionFilter());
+    }
+}
+```
+
+2. **At the Controller Level**
+```csharp
+[CustomExceptionFilter]
+public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        return View();
+    }
+}
+```
+
+3. **At the Action Method Level**
+```csharp
+public class HomeController : Controller
+{
+    [CustomExceptionFilter]
+    public ActionResult Index()
+    {
+        return View();
+    }
+}
+```
+
+### Summary of Action Filters
+
+| **Filter Type**      | **Purpose**                                                      | **Example Usage**                                                  |
+|----------------------|------------------------------------------------------------------|--------------------------------------------------------------------|
+| **Authorization Filters** | Control access to action methods.                                | `[CustomAuthorize] public ActionResult SecureAction() { }`         |
+| **Action Filters**   | Run code before and after action methods.                        | `[LogActionFilter] public ActionResult Index() { }`                |
+| **Result Filters**   | Run code before and after action results.                        | `[CustomResultFilter] public ActionResult Index() { }`             |
+| **Exception Filters**| Handle exceptions thrown by action methods.                     | `[CustomExceptionFilter] public ActionResult Index() { }`          |
+
+Action filters provide a powerful way to apply cross-cutting concerns across your ASP.NET MVC application. By leveraging these filters, you can keep your controllers and actions clean and focused on their primary responsibilities.
+
+## **Action Selector Vs Action Filter:**
+
+Here's a detailed comparison between Action Selectors and Action Filters in ASP.NET MVC, presented in tabular form:
+
+| **Aspect**                | **Action Selector**                                      | **Action Filter**                                             |
+|---------------------------|----------------------------------------------------------|---------------------------------------------------------------|
+| **Purpose**               | Determines which action method to execute.               | Executes code before and after an action method is invoked.   |
+| **Usage**                 | Used to select the appropriate action method based on custom logic. | Used to implement cross-cutting concerns like logging, authentication, authorization, etc. |
+| **Implementation**        | Implemented by creating custom attributes derived from `ActionMethodSelectorAttribute`. | Implemented by creating custom attributes derived from `ActionFilterAttribute`, `IActionFilter`, `IResultFilter`, etc. |
+| **Execution Time**        | Executed before the action method is selected.           | Can be executed before and after the action method, and before and after the action result. |
+| **Scope**                 | Affects which action method gets executed.               | Does not affect which action method gets executed but can modify its behavior or the result. |
+| **Common Uses**           | Overloading actions, selecting actions based on request headers or parameters. | Logging, authentication, authorization, caching, error handling, etc. |
+| **Example**               | `[NonAction]` to mark a method that should not be treated as an action method. | `[Authorize]` to restrict access to certain users or roles.   |
+| **Attributes**            | Uses attributes derived from `ActionMethodSelectorAttribute`. | Uses attributes derived from `ActionFilterAttribute`, `IActionFilter`, `IResultFilter`, etc. |
+| **Custom Implementation** | Requires overriding `IsValidForRequest` method.          | Requires overriding methods like `OnActionExecuting`, `OnActionExecuted`, `OnResultExecuting`, and `OnResultExecuted`. |
+| **Effect on Result**      | Does not directly affect the result of the action method. | Can modify the result of the action method and the action result. |
+
+### Examples
+
+#### Action Selector Example
+
+**Custom Action Selector:**
+```csharp
+public class CustomActionSelectorAttribute : ActionMethodSelectorAttribute
+{
+    public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
+    {
+        // Custom logic to determine if the action method should be selected
+        return controllerContext.HttpContext.Request.QueryString["action"] == methodInfo.Name;
+    }
+}
+```
+
+**Usage:**
+```csharp
+public class HomeController : Controller
+{
+    [CustomActionSelector]
+    public ActionResult Index()
+    {
+        return View();
+    }
+
+    [CustomActionSelector]
+    public ActionResult About()
+    {
+        return View();
+    }
+}
+```
+
+#### Action Filter Example
+
+**Custom Action Filter:**
+```csharp
+public class LogActionFilter : ActionFilterAttribute
+{
+    public override void OnActionExecuting(ActionExecutingContext filterContext)
+    {
+        // Code to run before the action method execution
+        Log("OnActionExecuting", filterContext.RouteData);
+    }
+
+    public override void OnActionExecuted(ActionExecutedContext filterContext)
+    {
+        // Code to run after the action method execution
+        Log("OnActionExecuted", filterContext.RouteData);
+    }
+
+    private void Log(string methodName, RouteData routeData)
+    {
+        // Logging logic
+        var controllerName = routeData.Values["controller"];
+        var actionName = routeData.Values["action"];
+        // Log the details
+    }
+}
+```
+
+**Usage:**
+```csharp
+[LogActionFilter]
+public class HomeController : Controller
+{
+    public ActionResult Index()
+    {
+        return View();
+    }
+}
+```
+
+### Summary
+
+While both Action Selectors and Action Filters are used to influence the behavior of action methods, they serve different purposes and are used in different contexts. Action Selectors are primarily for choosing which action method to invoke, whereas Action Filters are for adding additional processing around action method execution. Understanding the distinction between these two concepts is crucial for effectively leveraging ASP.NET MVC to build robust and maintainable web applications.
+
+## **Register Filter at different level:**
+
+Filters can be applied at different levels:
+
+1. **Global Filters:**
+   - Applied to all controllers and action methods.
+   ```csharp
+   public class FilterConfig
+   {
+       public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+       {
+           filters.Add(new HandleErrorAttribute());
+       }
+   }
+   ```
+
+2. **Controller Level:**
+   - Applied to all action methods within a controller.
+   ```csharp
+   [LogActionFilter]
+   public class HomeController : Controller
+   {
+       // All actions in this controller will use the LogActionFilter
+   }
+   ```
+
+3. **Action Method Level:**
+   - Applied to a specific action method.
+   ```csharp
+   public class HomeController : Controller
+   {
+       [LogActionFilter]
+       public ActionResult Index()
+       {
+           return View();
+       }
+   }
+   ```
+
+### Summary
+
+ASP.NET MVC filters provide a powerful way to handle cross-cutting concerns in your application. By understanding and leveraging these filters, you can keep your code clean, modular, and maintainable. Each type of filter has a specific role, and they can be used together to address a wide range of scenarios in a structured manner.
