@@ -79,102 +79,102 @@ In summary, ASP.NET MVC scaffolding is a powerful tool for accelerating the deve
 
 ![Create new project](image-2.png)
 
-**Step 1: Configure the project:**
+**Step 2: Configure the project:**
 
 ![Configure the project](image-1.png)
 
-**Step 1: Details of the Project Structure:**
+**Step 3: Details of the Project Structure:**
 
 ![Project Structure](image-3.png)
 
-**Step 1: Hosted application in portal:**
+**Step 4: Hosted application in portal:**
 
-![Application](image-4.png)
+![Application](image-31.png)
 
-**Step 1: Create a model:**
+**Step 5: Create a model:**
 
 ![Create a model](image-5.png)
 
-**Step 1: Create a DB Context:**
+**Step 6: Create a DB Context:**
 
 ![Create a DB Context](image-15.png)
 
-**Step 1: Use Scaffolding:**
+**Step 7: Use Scaffolding:**
 
 ![Use Scaffolding](image-7.png)
 
-**Step 1: Add Scaffold Item:**
+**Step 8: Add Scaffold Item:**
 
 ![Add Scaffold Item](image-9.png)
 
-**Step 1: Add MVC Controller:**
+**Step 9: Add MVC Controller:**
 
 ![Add MVC Controller](image-12.png)
 
-**Step 1: Install packages:**
+**Step 10: Install packages:**
 
 ![Install packages](image-10.png)
 
-**Step 1: Controller added:**
+**Step 11: Controller added:**
 
 ![Controller added](image-13.png)
 
-**Step 1: StudentModels Folder inside View Folder:**
+**Step 12: StudentModels Folder inside View Folder:**
 
 ![StudentModels Folder](image-14.png)
 
-**Step 1: Update DB Connection String:**
+**Step 13: Update DB Connection String:**
 
 ![Update DB Connection String](image-17.png)
 
-**Step 1: Register Program.cs with Db Context:**
+**Step 14: Register Program.cs with Db Context:**
 
 ![Register Program.cs with Db Context](image-18.png)
 
-**Step 1: Create Db Initilizer Class to initialize default list:**
+**Step 15: Create Db Initilizer Class to initialize default list:**
 
 ![Create Db Initilizer Class](image-16.png)
 
-**Step 1: Do Database Migration in Package Manager Console:**
+**Step 16: Do Database Migration in Package Manager Console:**
 
 ![Database Migration](image-19.png)
 
-**Step 1: Run and host the application in Portal:**
+**Step 17: Run and host the application in Portal:**
 
 ![Host in Portal](image-21.png)
 
-**Step 1: Create new details in portal:**
+**Step 18: Create new details in portal:**
 
 ![Create new details in portal](image-22.png)
 
-**Step 1: After creating new details in portal:**
+**Step 19: After creating new details in portal:**
 
 ![After creating new details in portal](image-23.png)
 
-**Step 1: View details in portal:**
+**Step 20: View details in portal:**
 
 ![View details in portal](image-24.png)
 
-**Step 1: Update details in portal:**
+**Step 21: Update details in portal:**
 
 ![Update details in portal](image-25.png)
 
-**Step 1: After update in portal:**
+**Step 22: After update in portal:**
 
 ![After update in portal](image-26.png)
 
-**Step 1: Delete details in portal:**
+**Step 23: Delete details in portal:**
 
 ![Delete details in portal](image-27.png)
 
-**Step 1: After delete in portal:**
+**Step 24: After delete in portal:**
 
 ![After delete in portal](image-28.png)
 
-**Step 1: View Database table:**
+**Step 25: View Database table:**
 
 ![View Database table](image-29.png)
 
-**Step 1: Get details in DB using query:**
+**Step 26: Get details in DB using query:**
 
 ![Get details in DB](image-30.png)
