@@ -171,3 +171,10 @@ In summary, ASP.NET MVC scaffolding is a powerful tool for accelerating the deve
 
 ![After delete in portal](image-28.png)
 
+**Step 1: View Database table:**
+
+![View Database table](image-29.png)
+
+**Step 1: Get details in DB using query:**
+
+![Get details in DB](image-30.png)
