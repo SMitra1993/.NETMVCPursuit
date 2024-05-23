@@ -2,7 +2,7 @@
 
 **Links:**
 
-- [Exception Handling](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/7%20-%20Exception%20Handling.md#exception-handling-)
+- [Exception Handling](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/7%20-%20Exception%20Handling.md#exception-handling--1)
 
 ## **Exception Handling:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/7%20-%20Exception%20Handling.md#exception-handling-)
 

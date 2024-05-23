@@ -2,7 +2,7 @@
 
 **Links:**
 
-- [Data Validation](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
+- [Data Validation](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation--1)
 - [ValidationMessageFor](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationmessagefor-)
 - [ValidationSummary](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationsummary-)
 - [Validation Controls](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validation-controls-)

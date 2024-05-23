@@ -7,7 +7,7 @@
 - [Layout View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-)
 - [Partial Views](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#partial-views-)
 - [Layout View Vs Partial View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-vs-partial-view-)
-- [ViewBag Vs ViewData Vs ViewData](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#model-binding-)
+- [ViewBag Vs ViewData Vs ViewData](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#viewbag-vs-viewdata-vs-viewdata-)
 - [HTML Helpers](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#html-helpers-)
 
 ## **MVC View:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
