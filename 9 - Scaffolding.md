@@ -1,6 +1,11 @@
 # Scaffloding ❤🚀
 
-## **MVC Scaffolding:**
+**Links:**
+
+- [MVC Scaffolding](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/9%20-%20Scaffolding.md#mvc-scaffolding-)
+- [Step-by-step process](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/9%20-%20Scaffolding.md#step-by-step-process-)
+
+## **MVC Scaffolding:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/9%20-%20Scaffolding.md#scaffloding-)
 
 ASP.NET MVC scaffolding is a code generation framework that automates the process of creating basic CRUD (Create, Read, Update, Delete) operations for your application's data models. It generates the necessary code files, such as controllers, views, and data access code, based on your model classes. Scaffolding simplifies the development process by eliminating repetitive tasks and reducing the amount of boilerplate code you need to write.
 
@@ -73,7 +78,7 @@ public class ApplicationDbContext : DbContext
 
 In summary, ASP.NET MVC scaffolding is a powerful tool for accelerating the development of CRUD functionality in your web applications. It automates the process of creating controllers, views, and data access code, allowing you to focus on implementing your application's business logic rather than writing boilerplate code.
 
-## **Step-by-step process:**
+## **Step-by-step process:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/9%20-%20Scaffolding.md#scaffloding-)
 
 **Step 1: Create New Project:**
 

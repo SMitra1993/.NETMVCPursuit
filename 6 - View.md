@@ -1,6 +1,16 @@
 # View ❤🚀
 
-## **MVC View:**
+**Links:**
+
+- [MVC View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#mvc-view-)
+- [Razor View Engine](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#razor-view-engine-)
+- [Layout View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-)
+- [Partial Views](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#partial-views-)
+- [Layout View Vs Partial View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-vs-partial-view-)
+- [ViewBag Vs ViewData Vs ViewData](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#model-binding-)
+- [HTML Helpers](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#html-helpers-)
+
+## **MVC View:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
 In ASP.NET MVC, the View is responsible for rendering the user interface. It uses data provided by the Controller and presents it to the user. The View in MVC is typically an HTML file with embedded Razor markup, which allows you to create dynamic web pages using C# code.
 
@@ -185,7 +195,7 @@ In this example, we created Views for listing and creating students in an ASP.NE
 
 This example demonstrates how to use Views in ASP.NET MVC to present data to the user and collect user input. By separating the presentation logic into Views, you maintain a clean separation of concerns and make your application more maintainable and testable.
 
-## **Razor View Engine:**
+## **Razor View Engine:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
 The Razor View Engine is a key component of ASP.NET MVC that provides a streamlined syntax for combining HTML markup with server-side code, such as C# or VB.NET. It was introduced as part of ASP.NET MVC 3 to offer a more efficient and readable way to write dynamic web pages compared to its predecessor, the ASPX view engine.
 
@@ -349,7 +359,7 @@ namespace YourNamespace.Controllers
 
 The Razor View Engine is a powerful and efficient tool for creating dynamic web pages in ASP.NET MVC. It combines the clarity of HTML with the power of C# to produce a streamlined and secure development experience. The example provided demonstrates how Razor can be used to build a simple yet dynamic product listing page, highlighting its ease of use and flexibility.
 
-## **Layout View:**
+## **Layout View:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
 In ASP.NET MVC, Layout View is a feature that allows you to define a common layout structure for multiple views within your application. This layout typically includes elements such as headers, footers, navigation menus, and other common UI components. Using a layout view helps maintain a consistent look and feel across your application and simplifies the process of updating the overall design.
 
@@ -427,7 +437,7 @@ Here's an example to illustrate how Layout View works in ASP.NET MVC:
 
 By using Layout Views in ASP.NET MVC, you can ensure consistency across your application's UI while also making it easier to maintain and update common layout elements.
 
-## **Partial Views:**
+## **Partial Views:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
 Partial Views in ASP.NET MVC allow you to create reusable components that can be shared across multiple views within your application. They are similar to regular views but are intended to represent smaller, self-contained parts of a web page, such as a sidebar, a login form, or a product listing.
 
@@ -509,7 +519,7 @@ For example, if your Partial View requires some data to render, you can pass it 
 
 By using Partial Views in ASP.NET MVC, you can modularize your application's UI components, promoting code reuse and making your views more maintainable. They are particularly useful for creating reusable widgets, forms, or any other components that appear on multiple pages throughout your application.
 
-## **Layout View Vs Partial View:**
+## **Layout View Vs Partial View:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
 Here's a detailed comparison between Layout Views and Partial Views in tabular form:
 
@@ -528,9 +538,9 @@ Here's a detailed comparison between Layout Views and Partial Views in tabular f
 
 Both Layout Views and Partial Views are essential components of ASP.NET MVC applications. Layout Views provide a consistent structure for your application's pages, while Partial Views enable the creation of reusable components that can be shared across multiple views. Understanding when and how to use each type of view is key to building maintainable and modular MVC applications.
 
-## **ViewBag Vs ViewData Vs ViewData:**
+## **ViewBag Vs ViewData Vs ViewData:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
-Certainly! Here's a comparison between `ViewBag`, `ViewData`, and `TempData` in tabular form, along with examples illustrating scenarios for each:
+Here's a comparison between `ViewBag`, `ViewData`, and `TempData` in tabular form, along with examples illustrating scenarios for each:
 
 | Feature          | ViewBag                                                | ViewData                                                  | TempData                                               |
 |------------------|--------------------------------------------------------|-----------------------------------------------------------|--------------------------------------------------------|
@@ -649,9 +659,9 @@ public ActionResult Error()
 
 In each scenario, the choice between `ViewBag`, `ViewData`, and `TempData` depends on the specific requirements of the application, such as the type of data being passed, its lifespan, and whether it needs to persist across redirects.
 
-## **HTML Helpers:**
+## **HTML Helpers:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
-Sure, let's delve a bit deeper into each HTML Helper:
+Let's delve a bit deeper into each HTML Helper:
 
 1. **TextBox**: The `TextBox` helper generates an HTML input element of type text. It typically takes the name of the property as its first parameter and optionally accepts additional parameters like HTML attributes.
    ```html

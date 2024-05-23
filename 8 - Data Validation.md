@@ -1,6 +1,13 @@
 # Data Validation ❤🚀
 
-## **Data Validation:**
+**Links:**
+
+- [Data Validation](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
+- [ValidationMessageFor](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationmessagefor-)
+- [ValidationSummary](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationsummary-)
+- [Validation Controls](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validation-controls-)
+
+## **Data Validation:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
 
 Data validation in ASP.NET MVC is vital for ensuring that the data submitted by users is accurate, complete, and meets the requirements of the application. It helps maintain data integrity and prevents potential security vulnerabilities. Here's a detailed explanation of how to achieve data validation in MVC with examples:
 
@@ -111,7 +118,7 @@ In this example:
 
 By combining these techniques, you can implement comprehensive data validation in your ASP.NET MVC application, ensuring data integrity and providing a seamless user experience.
 
-## **ValidationMessageFor:**
+## **ValidationMessageFor:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
 
 In ASP.NET MVC, `ValidationMessageFor` is an HTML Helper method that is used to display validation error messages for a specific model property. It is commonly used alongside `TextBoxFor`, `TextAreaFor`, and other input-related HTML Helper methods. `ValidationMessageFor` generates an HTML span element with the validation error message associated with the specified model property.
 
@@ -156,7 +163,7 @@ When the form is submitted, ASP.NET MVC will automatically perform validation ba
 
 By using `ValidationMessageFor`, you can provide users with immediate feedback about any validation errors, improving the user experience and guiding them to enter valid data.
 
-## **ValidationSummary:**
+## **ValidationSummary:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
 
 In ASP.NET MVC, `ValidationSummary` is an HTML Helper method used to display a summary of validation errors that have occurred during form submission. It consolidates all validation error messages into a single location, making it convenient for users to identify and address any issues with their input.
 
@@ -210,7 +217,7 @@ When the form is submitted, ASP.NET MVC will automatically perform validation ba
 
 By using `ValidationSummary`, you provide users with a clear overview of any validation errors that occurred during form submission, allowing them to quickly identify and correct their input. This enhances the user experience and helps ensure that valid data is submitted to the server.
 
-## **Validation Controls:**
+## **Validation Controls:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
 
 ASP.NET provides a set of validation controls that enable you to perform client-side and server-side validation of user input. These controls help ensure that data entered into web forms meets specific criteria or constraints. Let's explore each of these validation controls in detail along with examples:
 

@@ -2,10 +2,15 @@
 
 **Links:**
 
-- [ASP.NET MVC](https://github.com/SMitra1993/theNETInterrogation/blob/master/14%20-%20Exception.md#exception--1)
-- [MVC Architecture](https://github.com/SMitra1993/theNETInterrogation/blob/master/14%20-%20Exception.md#exception--1)
+- [ASP.NET MVC](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#aspnet-mvc-)
+- [MVC Architecture](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#mvc-architecture-)
+- [ASP.NET MVC Folder Structure](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#aspnet-mvc-folder-structure-)
+- [ASP.NET MVC Life Cycle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#aspnet-mvc-life-cycle-)
+- [Action Method Execution Flow](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#action-method-execution-flow-)
+- [View Result Execution Flow](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#view-result-execution-flow-)
+- [Action Result Execution Process](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#action-result-execution-process-)
 
-## **ASP.NET MVC:**
+## **ASP.NET MVC:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 ASP.NET MVC (Model-View-Controller) is an open-source web application framework developed by Microsoft. It enables developers to build dynamic, data-driven web applications using the Model-View-Controller architectural pattern. ASP.NET MVC provides a structured approach to developing web applications by separating concerns into three main components:
 
@@ -29,7 +34,7 @@ Key features of ASP.NET MVC include:
 
 Overall, ASP.NET MVC provides a powerful and flexible framework for building modern web applications with rich user interfaces and robust backend functionality. It is widely used by developers to create scalable, maintainable, and high-performance web applications for various industries and domains.
 
-## **MVC Architecture:**
+## **MVC Architecture:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 ASP.NET MVC (Model-View-Controller) is a framework for building web applications using the Model-View-Controller architectural pattern. It separates the application into three main components: Model, View, and Controller. Here's a detailed description of each component:
 
@@ -67,7 +72,7 @@ In ASP.NET MVC, the flow of data and control follows a predefined pattern:
 
 This separation of concerns allows for better organization, maintainability, and testability of web applications. It promotes code reusability, modularization, and scalability, making it easier to manage complex web projects.
 
-## **ASP.NET MVC Folder Structure:**
+## **ASP.NET MVC Folder Structure:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 Let's dive deeper into each folder in the ASP.NET MVC project structure:
 
@@ -128,7 +133,7 @@ Let's dive deeper into each folder in the ASP.NET MVC project structure:
 
 This breakdown provides a detailed understanding of the purpose and contents of each folder in the ASP.NET MVC project structure, facilitating efficient development and maintenance of web applications.
 
-## **ASP.NET MVC Life Cycle:**
+## **ASP.NET MVC Life Cycle:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 The application lifecycle and request lifecycle in ASP.NET MVC represent the sequence of events that occur from the application startup to handling an individual HTTP request. Here's a detailed explanation of each:
 
@@ -224,7 +229,7 @@ Below is a detailed comparison of the Application Life Cycle and the Request Lif
 
 In summary, the **Application Life Cycle** manages events and states that are global to the entire application, such as application startup and shutdown. On the other hand, the **Request Life Cycle** deals with the processing of individual HTTP requests, handling tasks like authentication, authorization, and request handling on a per-request basis. Understanding both life cycles is crucial for effectively managing resources, handling errors, and implementing robust web applications in ASP.NET.
 
-## **Action Method Execution Flow:**
+## **Action Method Execution Flow:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 1. **ControllerExecute()**
    - **Action Invoker Selects Method**: The entry point where the framework identifies and selects the appropriate action method to handle the incoming request. This is based on the routing data (URL, HTTP method, etc.).
@@ -267,7 +272,7 @@ In summary, the **Application Life Cycle** manages events and states that are gl
 
 This flow ensures that requests are processed securely, efficiently, and consistently, with ample opportunities for customization and handling cross-cutting concerns through filters.
 
-## **View Result Execution Flow:**
+## **View Result Execution Flow:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 The diagram illustrates the steps involved in the execution of an action result in ASP.NET MVC. Here's an explanation of each step in detail:
 
@@ -333,7 +338,7 @@ The diagram illustrates the steps involved in the execution of an action result 
 
 This flow ensures that custom logic can be injected at various points before and after the action result execution, providing flexibility and control over the result processing in ASP.NET MVC.
 
-## **Action Result Execution Process:**
+## **Action Result Execution Process:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/1%20-%20Architecture.md#architecture-)
 
 This diagram illustrates the detailed process of how a view is located and rendered in ASP.NET MVC. Each step represents a method or a process involved in finding and rendering a view. Here’s a breakdown of each step:
 

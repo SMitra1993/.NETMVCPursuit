@@ -1,6 +1,15 @@
 # Action ❤🚀
 
-## **Action Method:**
+**Links:**
+
+- [Action Method](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-method-)
+- [Action Result](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-result-)
+- [Action Selector](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-selector-)
+- [Action Filter](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-filter-)
+- [Action Selector Vs Action Filter](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-selector-vs-action-filter-)
+- [Register Filter at different level](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#register-filter-at-different-level-)
+
+## **Action Method:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 In ASP.NET MVC, action methods are methods in a controller that handle incoming HTTP requests and determine the response to be sent back to the client. These methods are the core of the MVC framework and facilitate the processing of requests, manipulation of data, and return of appropriate responses.
 
@@ -163,7 +172,7 @@ namespace MyMvcApp.Controllers
 
 Action methods are central to handling requests in ASP.NET MVC, allowing for various types of operations and responses tailored to the application's needs.
 
-## **Action Result:**
+## **Action Result:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 In ASP.NET MVC, action methods return objects derived from the `ActionResult` class. Each type of `ActionResult` represents a different kind of response to the client. Below is a detailed explanation of the various `ActionResult` types, along with examples for each, presented in a tabular format.
 
@@ -318,7 +327,7 @@ public ActionResult DownloadVirtualFile()
 
 These `ActionResult` types allow ASP.NET MVC controllers to return a variety of responses to handle different scenarios, making the framework flexible and powerful for web application development.
 
-## **Action Selector:**
+## **Action Selector:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 In ASP.NET MVC, action selectors are used to control which action method should be invoked in a controller. They are attributes that help in differentiating between multiple actions in the same controller based on certain criteria. This is particularly useful when you have actions that can be invoked based on different conditions like HTTP methods, custom logic, or action names.
 
@@ -428,7 +437,7 @@ In this example, `CustomAction` will only be invoked if the query string contain
 
 Action selectors provide a flexible way to control which methods are exposed as actions and under what conditions they can be invoked. This allows for greater control over the routing and handling of HTTP requests in an ASP.NET MVC application.
 
-## **Action Filter:**
+## **Action Filter:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 In ASP.NET MVC, action filters are used to inject extra processing logic before and after action method execution. They provide a way to apply cross-cutting concerns such as logging, authorization, caching, and more. Action filters can be applied globally, at the controller level, or at the action method level.
 
@@ -616,7 +625,7 @@ public class HomeController : Controller
 
 Action filters provide a powerful way to apply cross-cutting concerns across your ASP.NET MVC application. By leveraging these filters, you can keep your controllers and actions clean and focused on their primary responsibilities.
 
-## **Action Selector Vs Action Filter:**
+## **Action Selector Vs Action Filter:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 Here's a detailed comparison between Action Selectors and Action Filters in ASP.NET MVC, presented in tabular form:
 
@@ -711,7 +720,7 @@ public class HomeController : Controller
 
 While both Action Selectors and Action Filters are used to influence the behavior of action methods, they serve different purposes and are used in different contexts. Action Selectors are primarily for choosing which action method to invoke, whereas Action Filters are for adding additional processing around action method execution. Understanding the distinction between these two concepts is crucial for effectively leveraging ASP.NET MVC to build robust and maintainable web applications.
 
-## **Register Filter at different level:**
+## **Register Filter at different level:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
 Filters can be applied at different levels:
 

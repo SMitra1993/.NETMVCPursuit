@@ -1,6 +1,11 @@
 # Controller ❤🚀
 
-## **ASP.NET MVC Controller:**
+**Links:**
+
+- [ASP.NET MVC Controller](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
+- [Controller Base](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-base-)
+
+## **ASP.NET MVC Controller:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
 ### ASP.NET MVC Controller
 
@@ -19,7 +24,7 @@ In ASP.NET MVC, a controller is a fundamental component responsible for handling
 
 ### Basic Controller Example
 
-#### Step 1: Create a Controller
+### Step 1: Create a Controller
 
 ```csharp
 using System.Web.Mvc;
@@ -195,7 +200,7 @@ public class HomeController : Controller
 
 Controllers are an essential part of the ASP.NET MVC framework, managing the flow of data and interaction between the user, model, and views. Properly configuring routes, using action methods, and leveraging filters and data passing mechanisms are crucial for developing robust and maintainable MVC applications.
 
-## **Controller Base:**
+## **Controller Base:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
 ### Controller Base Class in ASP.NET MVC
 

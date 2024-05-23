@@ -1,6 +1,10 @@
 # Routing ❤🚀
 
-## **ASP.NET MVC Routing:**
+**Links:**
+
+- [ASP.NET MVC Routing](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/2%20-%20Routing.md#aspnet-mvc-routing-)
+
+## **ASP.NET MVC Routing:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/2%20-%20Routing.md#routing-)
 
 ASP.NET MVC Routing is a feature that enables the mapping of incoming HTTP requests to particular controller actions based on URL patterns. This is crucial for defining how URL paths correspond to the logic in your application. 
 

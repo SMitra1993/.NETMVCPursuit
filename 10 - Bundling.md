@@ -3,7 +3,7 @@
 **Links:**
 
 - [Script Bundle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#script-bundle-)
-- [Stye Bundle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#stye-bundle-1)
+- [Stye Bundle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#stye-bundle-)
 
 ## **Script Bundle:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#bundling-)
 

@@ -1,6 +1,11 @@
 # Model ❤🚀
 
-## **MVC Model:**
+**Links:**
+
+- [MVC Model](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#mvc-model-)
+- [Model Binding](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#model-binding-)
+
+## **MVC Model:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#model-)
 
 The Model in ASP.NET MVC represents the application's data and business logic. It is the part of the MVC architecture that is responsible for retrieving data from the database, performing operations on it, and providing it to the View and Controller.
 
@@ -212,7 +217,7 @@ In this example, we created a simple ASP.NET MVC application to manage a list of
 
 This example demonstrates the core concepts of the Model in ASP.NET MVC, including data encapsulation, validation, business logic, and data access. By using these concepts, you can build robust and maintainable web applications.
 
-## **Model Binding:**
+## **Model Binding:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/5%20-%20Model.md#model-)
 
 Model binding in ASP.NET MVC is a powerful feature that allows the framework to automatically map HTTP request data (such as form values, route data, and query string parameters) to the parameters of your action methods and to the properties of your model classes. This makes it easier to work with incoming data in a strongly-typed manner, avoiding the need to manually parse request data.
 
