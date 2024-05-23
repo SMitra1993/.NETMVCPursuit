@@ -2,10 +2,10 @@
 
 **Links:**
 
-- [Script Bundle](https://github.com/SMitra1993/theNETInterrogation/blob/master/14%20-%20Exception.md#exception--1)
-- [Stye Bundle](https://github.com/SMitra1993/theNETInterrogation/blob/master/14%20-%20Exception.md#exception--1)
+- [Script Bundle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#script-bundle-)
+- [Stye Bundle](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#stye-bundle-1)
 
-## **Script Bundle:**
+## **Script Bundle:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#bundling-)
 
 In ASP.NET MVC, bundling and minification improve the performance of your web application by reducing the number of HTTP requests and the size of requested resources. The `ScriptBundle` class is part of this feature and is used to bundle multiple JavaScript files into a single file. This reduces the number of HTTP requests required to load a page, resulting in faster page load times.
 
@@ -147,7 +147,7 @@ Assume you have two custom JavaScript files: `custom1.js` and `custom2.js`, loca
 
 Using `ScriptBundle` in ASP.NET MVC helps improve web application performance by combining multiple JavaScript files into a single file and applying minification to reduce file size. This reduces the number of HTTP requests and speeds up page load times. The process involves defining the bundles in a `BundleConfig` class, registering them in `Global.asax`, and including them in your views using `Scripts.Render`. This approach not only optimizes the loading of scripts but also simplifies script management in your application.
 
-## **Stye Bundle:**
+## **Stye Bundle:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/10%20-%20Bundling.md#bundling-)
 
 In ASP.NET MVC, the `StyleBundle` class is used to bundle and minify CSS (Cascading Style Sheets) files. This improves the performance of web applications by reducing the number of HTTP requests and the size of the requested resources. The `StyleBundle` class is part of the bundling and minification feature provided by the `Microsoft.AspNet.Web.Optimization` package.
 
