@@ -4,6 +4,7 @@
 
 - [MVC View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#mvc-view-)
 - [Razor View Engine](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#razor-view-engine-)
+- [Razor Code Expressions](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#razor-code-expressions-)
 - [Layout View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-)
 - [Partial Views](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#partial-views-)
 - [Layout View Vs Partial View](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#layout-view-vs-partial-view-)
@@ -358,6 +359,90 @@ namespace YourNamespace.Controllers
 ### Conclusion
 
 The Razor View Engine is a powerful and efficient tool for creating dynamic web pages in ASP.NET MVC. It combines the clarity of HTML with the power of C# to produce a streamlined and secure development experience. The example provided demonstrates how Razor can be used to build a simple yet dynamic product listing page, highlighting its ease of use and flexibility.
+
+## **Razor Code Expressions:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
+
+ASP.NET Razor is a syntax for embedding server-based code into web pages. Razor code expressions allow you to embed C# or VB.NET code directly into your HTML markup to dynamically generate content. Razor code expressions are enclosed within `@{ ... }` syntax.
+
+Here's an explanation of ASP.NET Razor code expressions and their types:
+
+### 1. Inline Code Expressions:
+Inline code expressions are used to execute a single line of code and output the result directly into the HTML markup.
+
+Example (C#):
+```html
+<p>Hello, @Model.Name!</p>
+```
+
+Example (VB.NET):
+```html
+<p>Hello, @Model.Name!</p>
+```
+
+### 2. Code Blocks:
+Code blocks are used to execute multiple lines of code and perform more complex logic.
+
+Example (C#):
+```html
+@if (Model.Age >= 18)
+{
+    <p>Welcome, you are an adult.</p>
+}
+else
+{
+    <p>Sorry, you are not yet an adult.</p>
+}
+```
+
+Example (VB.NET):
+```html
+@If Model.Age >= 18 Then
+    @<p>Welcome, you are an adult.</p>
+Else
+    @<p>Sorry, you are not yet an adult.</p>
+End If
+```
+
+### 3. Output Encoding:
+By default, Razor code expressions automatically HTML encode their output to prevent XSS (Cross-Site Scripting) attacks.
+
+Example:
+```html
+<p>Name: @Model.Name</p>
+```
+
+If `Model.Name` contains HTML characters like `<`, `>`, `&`, etc., they will be encoded to `&lt;`, `&gt;`, `&amp;`, respectively.
+
+### 4. Explicit Output Encoding:
+If you want to prevent automatic HTML encoding, you can use `Html.Raw()` method to output raw HTML content.
+
+Example:
+```html
+<p>@Html.Raw(Model.HtmlContent)</p>
+```
+
+### 5. Nested Code Expressions:
+You can nest code expressions within each other to perform more complex logic.
+
+Example (C#):
+```html
+<p>Total: @(Model.Quantity * Model.Price)</p>
+```
+
+Example (VB.NET):
+```html
+<p>Total: @(Model.Quantity * Model.Price)</p>
+```
+
+### 6. Code Comments:
+You can also include comments within Razor code using `@* ... *@` syntax.
+
+Example:
+```html
+@* This is a Razor code comment *@
+```
+
+ASP.NET Razor code expressions provide a powerful way to integrate server-side logic into your web pages, allowing you to create dynamic and interactive web applications. Whether you're executing simple inline expressions or complex conditional statements, Razor makes it easy to blend HTML markup with server-based code.
 
 ## **Layout View:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/6%20-%20View.md#view-)
 
