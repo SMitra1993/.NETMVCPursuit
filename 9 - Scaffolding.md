@@ -144,42 +144,46 @@ In summary, ASP.NET MVC scaffolding is a powerful tool for accelerating the deve
 
 ![Database Migration](image-19.png)
 
-**Step 17: Run and host the application in Portal:**
+**Step 17: Database Migration Class is added in the project:**
+
+![Migration Class](image-4.png)
+
+**Step 18: Run and host the application in Portal:**
 
 ![Host in Portal](image-21.png)
 
-**Step 18: Create new details in portal:**
+**Step 19: Create new details in portal:**
 
 ![Create new details in portal](image-22.png)
 
-**Step 19: After creating new details in portal:**
+**Step 20: After creating new details in portal:**
 
 ![After creating new details in portal](image-23.png)
 
-**Step 20: View details in portal:**
+**Step 21: View details in portal:**
 
 ![View details in portal](image-24.png)
 
-**Step 21: Update details in portal:**
+**Step 22: Update details in portal:**
 
 ![Update details in portal](image-25.png)
 
-**Step 22: After update in portal:**
+**Step 23: After update in portal:**
 
 ![After update in portal](image-26.png)
 
-**Step 23: Delete details in portal:**
+**Step 24: Delete details in portal:**
 
 ![Delete details in portal](image-27.png)
 
-**Step 24: After delete in portal:**
+**Step 25: After delete in portal:**
 
 ![After delete in portal](image-28.png)
 
-**Step 25: View Database table:**
+**Step 26: View Database table:**
 
 ![View Database table](image-29.png)
 
-**Step 26: Get details in DB using query:**
+**Step 27: Get details in DB using query:**
 
 ![Get details in DB](image-30.png)
