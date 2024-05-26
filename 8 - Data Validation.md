@@ -9,6 +9,8 @@
 - [ValidateAntiForgeryToken](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationantiforgerytoken-)
 - [`[Bind]` Attribute](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationantiforgerytoken-)
 - [MVC Tag Helpers](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#mvctaghelpers-)
+- [Data Annotations For Properties / Columns](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#mvctaghelpers-)
+- [Data Annotations For Database Schema](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#mvctaghelpers-)
 
 ## **Data Validation:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
 
@@ -803,3 +805,391 @@ Generated HTML:
 ### Conclusion
 
 MVC Tag Helpers in ASP.NET Core significantly streamline the process of binding server-side code with HTML elements, making Razor views cleaner and more maintainable. They assist in generating dynamic, data-driven web content efficiently, providing better performance and easier debugging through the use of cache helpers and versioned URLs. By leveraging these Tag Helpers, developers can build robust and interactive web applications more effectively.
+
+## **Data Annotations For Properties / Columns:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
+
+### Data Annotations in Model Binding
+
+Data annotations in ASP.NET MVC are used to configure the model classes by adding metadata that can control how data is displayed and validated. They provide a way to enforce rules and constraints directly in the model, ensuring data integrity and consistency. These annotations can be used for validation, formatting, and specifying database schema details.
+
+Here's a detailed explanation of some commonly used data annotations:
+
+#### Key
+The `[Key]` attribute is used to denote the primary key of an entity.
+
+```csharp
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+    
+    public string Name { get; set; }
+}
+```
+
+#### Timestamp
+The `[Timestamp]` attribute is used for concurrency checking. It generates a timestamp column in the database to handle concurrency conflicts.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [Timestamp]
+    public byte[] RowVersion { get; set; }
+}
+```
+
+#### ConcurrencyCheck
+The `[ConcurrencyCheck]` attribute specifies that a property should be included in the concurrency check.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [ConcurrencyCheck]
+    public string Name { get; set; }
+}
+```
+
+#### Required
+The `[Required]` attribute specifies that a property must have a value. It is used for validating that the field is not empty.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [Required(ErrorMessage = "Name is required")]
+    public string Name { get; set; }
+}
+```
+
+#### MinLength
+The `[MinLength]` attribute specifies the minimum length of a string or array data field.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [MinLength(3, ErrorMessage = "Name must be at least 3 characters long")]
+    public string Name { get; set; }
+}
+```
+
+#### MaxLength
+The `[MaxLength]` attribute specifies the maximum length of a string or array data field.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [MaxLength(100, ErrorMessage = "Name cannot be more than 100 characters long")]
+    public string Name { get; set; }
+}
+```
+
+#### StringLength
+The `[StringLength]` attribute specifies both the maximum and optional minimum length of a string data field.
+
+```csharp
+public class Product
+{
+    public int ProductId { get; set; }
+
+    [StringLength(100, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 100 characters long")]
+    public string Name { get; set; }
+}
+```
+
+### Example Scenario
+
+Consider a `Product` model where you want to enforce specific rules for data validation and database schema constraints. Here's how you can apply these data annotations:
+
+```csharp
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    [Required(ErrorMessage = "Name is required")]
+    [StringLength(100, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 100 characters long")]
+    public string Name { get; set; }
+
+    [ConcurrencyCheck]
+    public decimal Price { get; set; }
+
+    [Required]
+    [MinLength(3, ErrorMessage = "Category must be at least 3 characters long")]
+    [MaxLength(50, ErrorMessage = "Category cannot be more than 50 characters long")]
+    public string Category { get; set; }
+
+    [Timestamp]
+    public byte[] RowVersion { get; set; }
+}
+```
+
+### Applying Data Annotations in an ASP.NET MVC Application
+
+1. **Create a Model:**
+
+   ```csharp
+   public class Product
+   {
+       [Key]
+       public int ProductId { get; set; }
+
+       [Required(ErrorMessage = "Name is required")]
+       [StringLength(100, MinimumLength = 3, ErrorMessage = "Name must be between 3 and 100 characters long")]
+       public string Name { get; set; }
+
+       [ConcurrencyCheck]
+       public decimal Price { get; set; }
+
+       [Required]
+       [MinLength(3, ErrorMessage = "Category must be at least 3 characters long")]
+       [MaxLength(50, ErrorMessage = "Category cannot be more than 50 characters long")]
+       public string Category { get; set; }
+
+       [Timestamp]
+       public byte[] RowVersion { get; set; }
+   }
+   ```
+
+2. **Create a Controller:**
+
+   ```csharp
+   public class ProductsController : Controller
+   {
+       private readonly ApplicationDbContext _context;
+
+       public ProductsController(ApplicationDbContext context)
+       {
+           _context = context;
+       }
+
+       // GET: Products
+       public async Task<IActionResult> Index()
+       {
+           return View(await _context.Products.ToListAsync());
+       }
+
+       // GET: Products/Create
+       public IActionResult Create()
+       {
+           return View();
+       }
+
+       // POST: Products/Create
+       [HttpPost]
+       [ValidateAntiForgeryToken]
+       public async Task<IActionResult> Create([Bind("ProductId,Name,Price,Category,RowVersion")] Product product)
+       {
+           if (ModelState.IsValid)
+           {
+               _context.Add(product);
+               await _context.SaveChangesAsync();
+               return RedirectToAction(nameof(Index));
+           }
+           return View(product);
+       }
+   }
+   ```
+
+3. **Create a View:**
+
+   Create a `Create.cshtml` view to add a new product.
+
+   ```html
+   @model YourNamespace.Models.Product
+
+   <h2>Create Product</h2>
+
+   <form asp-action="Create">
+       <div class="form-group">
+           <label asp-for="Name" class="control-label"></label>
+           <input asp-for="Name" class="form-control" />
+           <span asp-validation-for="Name" class="text-danger"></span>
+       </div>
+       <div class="form-group">
+           <label asp-for="Price" class="control-label"></label>
+           <input asp-for="Price" class="form-control" />
+           <span asp-validation-for="Price" class="text-danger"></span>
+       </div>
+       <div class="form-group">
+           <label asp-for="Category" class="control-label"></label>
+           <input asp-for="Category" class="form-control" />
+           <span asp-validation-for="Category" class="text-danger"></span>
+       </div>
+       <div class="form-group">
+           <input type="submit" value="Create" class="btn btn-primary" />
+       </div>
+   </form>
+   ```
+
+### Summary
+
+Using data annotations in ASP.NET MVC, you can ensure that your models adhere to specific validation and database schema rules, thus improving data integrity and reducing the likelihood of errors. The annotations like `[Key]`, `[Required]`, `[MinLength]`, `[MaxLength]`, `[StringLength]`, `[ConcurrencyCheck]`, and `[Timestamp]` allow you to declaratively specify these rules directly in your model classes.
+
+## **Data Annotations For Database Schema:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-validation-)
+
+### Data Annotations in Model Binding
+
+Data annotations in ASP.NET MVC and Entity Framework (EF) are used to add metadata to the model classes. This metadata can control how data is displayed, validated, and mapped to the database. These annotations are used for a variety of purposes including configuring database schema details and setting validation rules.
+
+Below are the descriptions of specific data annotations related to database schema configuration:
+
+#### Table
+The `[Table]` attribute is used to specify the database table name that a class should map to.
+
+```csharp
+[Table("Products")]
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+    
+    public string Name { get; set; }
+}
+```
+In this example, the `Product` class will be mapped to the `Products` table in the database.
+
+#### Column
+The `[Column]` attribute is used to specify the database column that a property should map to.
+
+```csharp
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    [Column("ProductName")]
+    public string Name { get; set; }
+}
+```
+In this example, the `Name` property will be mapped to the `ProductName` column in the database.
+
+#### Index
+The `[Index]` attribute is used to create an index on a specific column or columns in the database. Note that this attribute is not natively supported in EF Core, but you can use the fluent API for index creation.
+
+```csharp
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    [Index(IsUnique = true)]
+    public string Name { get; set; }
+}
+```
+In this example, an index will be created on the `Name` column, ensuring that the values are unique.
+
+#### ForeignKey
+The `[ForeignKey]` attribute is used to specify a foreign key relationship between two tables.
+
+```csharp
+public class Order
+{
+    [Key]
+    public int OrderId { get; set; }
+
+    public int ProductId { get; set; }
+
+    [ForeignKey("ProductId")]
+    public Product Product { get; set; }
+}
+```
+In this example, the `ProductId` property in the `Order` class is a foreign key that references the `Product` table.
+
+#### NotMapped
+The `[NotMapped]` attribute is used to specify that a property should not be mapped to a column in the database.
+
+```csharp
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    [NotMapped]
+    public string TemporaryData { get; set; }
+}
+```
+In this example, the `TemporaryData` property will not be mapped to any column in the database.
+
+#### InverseProperty
+The `[InverseProperty]` attribute is used to configure the inverse relationship between two navigation properties.
+
+```csharp
+public class Order
+{
+    [Key]
+    public int OrderId { get; set; }
+
+    public int ProductId { get; set; }
+
+    [ForeignKey("ProductId")]
+    public Product Product { get; set; }
+}
+
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    public string Name { get; set; }
+
+    [InverseProperty("Product")]
+    public ICollection<Order> Orders { get; set; }
+}
+```
+In this example, the `Orders` collection in the `Product` class is the inverse of the `Product` navigation property in the `Order` class.
+
+### Example Scenario
+
+Consider an e-commerce application where you need to manage products and orders. You can use the data annotations to configure the database schema details.
+
+```csharp
+[Table("Products")]
+public class Product
+{
+    [Key]
+    public int ProductId { get; set; }
+
+    [Column("ProductName")]
+    [Index(IsUnique = true)]
+    public string Name { get; set; }
+
+    [NotMapped]
+    public string TemporaryData { get; set; }
+
+    [InverseProperty("Product")]
+    public ICollection<Order> Orders { get; set; }
+}
+
+[Table("Orders")]
+public class Order
+{
+    [Key]
+    public int OrderId { get; set; }
+
+    public int ProductId { get; set; }
+
+    [ForeignKey("ProductId")]
+    public Product Product { get; set; }
+}
+```
+
+In this example:
+- The `Product` class is mapped to the `Products` table.
+- The `Name` property in the `Product` class is mapped to the `ProductName` column and has a unique index.
+- The `TemporaryData` property in the `Product` class is not mapped to the database.
+- The `Order` class is mapped to the `Orders` table.
+- The `ProductId` property in the `Order` class is a foreign key to the `Products` table.
+- The `Orders` collection in the `Product` class is the inverse property of the `Product` navigation property in the `Order` class.
+
+### Summary
+
+Data annotations in ASP.NET MVC and EF provide a powerful way to configure your models with metadata. By using annotations such as `[Table]`, `[Column]`, `[Index]`, `[ForeignKey]`, `[NotMapped]`, and `[InverseProperty]`, you can control how your models map to the database schema and enforce validation rules directly within your model classes. This approach ensures consistency, data integrity, and simplifies the overall development process by keeping configuration close to the data it pertains to.
