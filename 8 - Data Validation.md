@@ -8,7 +8,7 @@
 - [Validation Controls](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validation-controls-)
 - [ValidateAntiForgeryToken](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationantiforgerytoken-)
 - [`[Bind]` Attribute](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#validationantiforgerytoken-)
-- [MVC Tag Helpers](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#mvc-tag-helpers)
+- [MVC Tag Helpers](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#mvc-tag-helpers-)
 - [Data Annotations For Properties / Columns](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-annotations-for-properties--columns-)
 - [Data Annotations For Database Schema](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/8%20-%20Data%20Validation.md#data-annotations-for-database-schema-)
 
