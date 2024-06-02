@@ -4,9 +4,9 @@
 
 - [ASP.NET MVC Controller](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
 - [Controller Base](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-base-)
-- [Dependency Injection](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
-- [Benefit of DI instead `new` keyword](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-base-)
-- [AddSingleton vs AddScoped vs AddTransient](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
+- [Dependency Injection](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#dependency-injection-)
+- [Benefit of DI instead `new` keyword](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#benefit-of-di-instead-new-keyword-)
+- [AddSingleton vs AddScoped vs AddTransient](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addsingleton-vs-addscoped-vs-addtransient-)
 
 ## **ASP.NET MVC Controller:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
