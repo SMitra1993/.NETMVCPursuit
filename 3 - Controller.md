@@ -4,6 +4,9 @@
 
 - [ASP.NET MVC Controller](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
 - [Controller Base](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-base-)
+- [Dependency Injection](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
+- [Benefit of DI instead `new` keyword](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-base-)
+- [AddSingleton vs AddScoped vs AddTransient](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#aspnet-mvc-controller-)
 
 ## **ASP.NET MVC Controller:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
@@ -373,3 +376,535 @@ namespace MyMvcApp.Controllers
 ```
 
 In this example, the `HomeController` demonstrates the use of various properties and methods provided by the `Controller` base class. This includes returning different types of results, using `ViewBag`, `ViewData`, and `TempData` to pass data to views, and overriding action and result filter methods to implement custom logic before and after action methods and results are executed.
+
+## **Dependency Injection:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
+
+### Dependency Injection in ASP.NET Core MVC
+
+Dependency Injection (DI) is a design pattern used to implement IoC (Inversion of Control). It allows the creation of dependent objects outside of a class and provides those objects to a class in various ways. ASP.NET Core has built-in support for dependency injection, making it easier to manage and test the dependencies of your classes.
+
+### Key Concepts of Dependency Injection
+
+1. **Service**: A class that provides functionality to other classes.
+2. **Client**: A class that depends on a service.
+3. **Service Lifetime**: The duration a service object is available:
+   - **Transient**: Created each time they are requested.
+   - **Scoped**: Created once per request.
+   - **Singleton**: Created once and shared throughout the application's lifetime.
+
+### Steps to Implement Dependency Injection in ASP.NET Core MVC
+
+1. **Create a Service Interface and Implementation**
+2. **Register the Service in the `Startup.cs`**
+3. **Inject the Service into a Controller**
+
+#### Step-by-Step Example
+
+1. **Create a Service Interface and Implementation**
+
+   First, define an interface and its implementation. Let's create a simple service that performs basic arithmetic operations.
+
+   **IArithmeticService.cs**
+
+   ```csharp
+   public interface IArithmeticService
+   {
+       int Add(int a, int b);
+       int Subtract(int a, int b);
+       int Multiply(int a, int b);
+       int Divide(int a, int b);
+   }
+   ```
+
+   **ArithmeticService.cs**
+
+   ```csharp
+   public class ArithmeticService : IArithmeticService
+   {
+       public int Add(int a, int b)
+       {
+           return a + b;
+       }
+
+       public int Subtract(int a, int b)
+       {
+           return a - b;
+       }
+
+       public int Multiply(int a, int b)
+       {
+           return a * b;
+       }
+
+       public int Divide(int a, int b)
+       {
+           if (b == 0)
+           {
+               throw new DivideByZeroException("Divider cannot be zero.");
+           }
+           return a / b;
+       }
+   }
+   ```
+
+2. **Register the Service in `Startup.cs`**
+
+   In the `ConfigureServices` method of the `Startup` class, register your service with the DI container.
+
+   **Startup.cs**
+
+   ```csharp
+   public class Startup
+   {
+       public void ConfigureServices(IServiceCollection services)
+       {
+           services.AddControllersWithViews();
+           
+           // Registering the ArithmeticService with a transient lifetime
+           services.AddTransient<IArithmeticService, ArithmeticService>();
+       }
+
+       public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+       {
+           if (env.IsDevelopment())
+           {
+               app.UseDeveloperExceptionPage();
+           }
+           else
+           {
+               app.UseExceptionHandler("/Home/Error");
+               app.UseHsts();
+           }
+
+           app.UseHttpsRedirection();
+           app.UseStaticFiles();
+
+           app.UseRouting();
+
+           app.UseAuthorization();
+
+           app.UseEndpoints(endpoints =>
+           {
+               endpoints.MapControllerRoute(
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+           });
+       }
+   }
+   ```
+
+3. **Inject the Service into a Controller**
+
+   Use constructor injection to get the service in a controller.
+
+   **HomeController.cs**
+
+   ```csharp
+   public class HomeController : Controller
+   {
+       private readonly IArithmeticService _arithmeticService;
+
+       public HomeController(IArithmeticService arithmeticService)
+       {
+           _arithmeticService = arithmeticService;
+       }
+
+       public IActionResult Index()
+       {
+           var result = _arithmeticService.Add(5, 3);
+           ViewBag.Result = result;
+           return View();
+       }
+   }
+   ```
+
+4. **Create a View to Display the Result**
+
+   **Views/Home/Index.cshtml**
+
+   ```html
+   @*
+       Sample View to display the result
+   *@
+   @model dynamic
+   <div>
+       <h1>Arithmetic Operations Result</h1>
+       <p>Result of Addition: @ViewBag.Result</p>
+   </div>
+   ```
+
+### Summary
+
+By following these steps, you can implement dependency injection in your ASP.NET Core MVC application. The example demonstrates how to define a service interface and its implementation, register the service with the DI container, and inject the service into a controller using constructor injection.
+
+### Full Example Code
+
+Here is the complete code in one place for easy reference:
+
+**IArithmeticService.cs**
+
+```csharp
+public interface IArithmeticService
+{
+    int Add(int a, int b);
+    int Subtract(int a, int b);
+    int Multiply(int a, int b);
+    int Divide(int a, int b);
+}
+```
+
+**ArithmeticService.cs**
+
+```csharp
+public class ArithmeticService : IArithmeticService
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public int Subtract(int a, int b)
+    {
+        return a - b;
+    }
+
+    public int Multiply(int a, int b)
+    {
+        return a * b;
+    }
+
+    public int Divide(int a, int b)
+    {
+        if (b == 0)
+        {
+            throw new DivideByZeroException("Divider cannot be zero.");
+        }
+        return a / b;
+    }
+}
+```
+
+**Startup.cs**
+
+```csharp
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllersWithViews();
+        
+        services.AddTransient<IArithmeticService, ArithmeticService>();
+    }
+
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    {
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+        else
+        {
+            app.UseExceptionHandler("/Home/Error");
+            app.UseHsts();
+        }
+
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+
+        app.UseAuthorization();
+
+        app.UseEndpoints(endpoints =>
+        {
+            endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
+        });
+    }
+}
+```
+
+**HomeController.cs**
+
+```csharp
+public class HomeController : Controller
+{
+    private readonly IArithmeticService _arithmeticService;
+
+    public HomeController(IArithmeticService arithmeticService)
+    {
+        _arithmeticService = arithmeticService;
+    }
+
+    public IActionResult Index()
+    {
+        var result = _arithmeticService.Add(5, 3);
+        ViewBag.Result = result;
+        return View();
+    }
+}
+```
+
+**Views/Home/Index.cshtml**
+
+```html
+@model dynamic
+<div>
+    <h1>Arithmetic Operations Result</h1>
+    <p>Result of Addition: @ViewBag.Result</p>
+</div>
+```
+
+This example covers the basic implementation of dependency injection in ASP.NET Core MVC, demonstrating how to set up and use services within your application.
+
+## **Benefit of DI instead `new` keyword:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
+
+### Why Use Dependency Injection Instead of the `new` Keyword?
+
+Dependency Injection (DI) is preferred over directly instantiating objects with the `new` keyword in scenarios where you want to achieve better decoupling, testability, and maintainability of your code. DI allows you to inject dependencies into your classes, rather than having the classes create the dependencies themselves.
+
+### Problem Scenario Without Dependency Injection
+
+Let's consider a simple example where we have a `HomeController` that uses a service `ArithmeticService`.
+
+#### Without Dependency Injection
+
+```csharp
+public interface IArithmeticService
+{
+    int Add(int a, int b);
+}
+
+public class ArithmeticService : IArithmeticService
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+
+public class HomeController : Controller
+{
+    private readonly IArithmeticService _arithmeticService;
+
+    public HomeController()
+    {
+        _arithmeticService = new ArithmeticService();
+    }
+
+    public IActionResult Index()
+    {
+        var result = _arithmeticService.Add(5, 3);
+        ViewBag.Result = result;
+        return View();
+    }
+}
+```
+
+### Problems with Direct Instantiation
+
+1. **Tight Coupling**: The `HomeController` is tightly coupled to the `ArithmeticService`. If you need to change the implementation of `ArithmeticService`, you would have to modify the `HomeController`.
+
+2. **Difficult to Test**: Unit testing the `HomeController` becomes difficult because you cannot easily replace `ArithmeticService` with a mock implementation. This makes it hard to isolate the behavior of the controller.
+
+3. **Limited Flexibility**: If you want to introduce a different implementation of `IArithmeticService` (e.g., `AdvancedArithmeticService`), you would need to change the constructor of the `HomeController`, making the code less flexible.
+
+### Solution with Dependency Injection
+
+By using dependency injection, you can overcome these problems by injecting the dependency rather than creating it inside the class.
+
+#### With Dependency Injection
+
+1. **Define the Service Interface and Implementation**
+
+```csharp
+public interface IArithmeticService
+{
+    int Add(int a, int b);
+}
+
+public class ArithmeticService : IArithmeticService
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+}
+```
+
+2. **Register the Service in `Startup.cs`**
+
+```csharp
+public class Startup
+{
+    public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddControllersWithViews();
+        
+        // Register the ArithmeticService with a transient lifetime
+        services.AddTransient<IArithmeticService, ArithmeticService>();
+    }
+
+    // Other methods omitted for brevity
+}
+```
+
+3. **Inject the Service into the Controller**
+
+```csharp
+public class HomeController : Controller
+{
+    private readonly IArithmeticService _arithmeticService;
+
+    public HomeController(IArithmeticService arithmeticService)
+    {
+        _arithmeticService = arithmeticService;
+    }
+
+    public IActionResult Index()
+    {
+        var result = _arithmeticService.Add(5, 3);
+        ViewBag.Result = result;
+        return View();
+    }
+}
+```
+
+### Advantages of Dependency Injection
+
+1. **Loose Coupling**: The `HomeController` is not directly coupled to `ArithmeticService`. It only depends on the `IArithmeticService` interface. This allows you to change the implementation without modifying the controller.
+
+2. **Improved Testability**: You can easily mock `IArithmeticService` and test the `HomeController` in isolation. This is crucial for writing effective unit tests.
+
+```csharp
+public class HomeControllerTests
+{
+    [Fact]
+    public void Index_ReturnsCorrectResult()
+    {
+        // Arrange
+        var mockService = new Mock<IArithmeticService>();
+        mockService.Setup(s => s.Add(5, 3)).Returns(8);
+        var controller = new HomeController(mockService.Object);
+
+        // Act
+        var result = controller.Index() as ViewResult;
+
+        // Assert
+        Assert.Equal(8, result.ViewBag.Result);
+    }
+}
+```
+
+3. **Increased Flexibility**: You can easily switch between different implementations of `IArithmeticService` (e.g., `AdvancedArithmeticService`) by changing the registration in `Startup.cs`.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddControllersWithViews();
+    
+    // Register a different implementation
+    services.AddTransient<IArithmeticService, AdvancedArithmeticService>();
+}
+```
+
+### Summary
+
+Dependency Injection offers a way to decouple the creation of an object from its usage. This promotes code reusability, easier maintenance, and better testability. By using DI, you can focus on the behavior of your classes without worrying about the creation and lifecycle management of their dependencies.
+
+## **AddSingleton vs AddScoped vs AddTransient:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
+
+Here’s a detailed comparison of `AddSingleton`, `AddScoped`, and `AddTransient` in ASP.NET Core dependency injection, including scenarios where each might be used:
+
+| Feature/Aspect               | AddSingleton                                         | AddScoped                                           | AddTransient                                        |
+|------------------------------|------------------------------------------------------|----------------------------------------------------|----------------------------------------------------|
+| **Lifetime**                 | Singleton                                            | Scoped                                              | Transient                                          |
+| **Instance Creation**        | Created once and shared across all requests.         | Created once per request (or per scope).            | Created every time it's requested.                 |
+| **Usage Scenario**           | When a single instance should be shared across the entire application. | When an instance should be shared within a request, but not across requests. | When a new instance is needed every time it's requested. |
+| **Memory Consumption**       | Lower memory footprint as only one instance is created. | Moderate memory footprint, one instance per request. | Higher memory footprint, new instance per request. |
+| **Performance**              | High performance as only one instance is created and reused. | Moderate performance, one instance per request.     | Lower performance, new instance creation each time.|
+| **Thread Safety**            | Must be thread-safe as it's shared across multiple threads. | Can be thread-safe, but only within the request scope. | Generally not required to be thread-safe.          |
+| **Example Service**          | Configuration settings, Logging services, Caching services. | Database context (EF Core), Unit of Work pattern.   | Lightweight, stateless services, utilities.        |
+| **Configuration in Startup** | `services.AddSingleton<IService, Service>();`         | `services.AddScoped<IService, Service>();`           | `services.AddTransient<IService, Service>();`      |
+| **Instance Example**         | Used for configurations loaded once and shared. Example: `services.AddSingleton<IConfiguration>(Configuration);` | Used for services that need to maintain state within a request. Example: `services.AddScoped<IDbContext, AppDbContext>();` | Used for short-lived services. Example: `services.AddTransient<IEmailSender, EmailSender>();` |
+
+### Scenarios
+
+#### Singleton Scenario
+
+You have a configuration service that reads settings from a configuration file. This configuration is constant throughout the lifetime of the application and should be shared.
+
+```csharp
+public interface IConfigurationService
+{
+    string GetSetting(string key);
+}
+
+public class ConfigurationService : IConfigurationService
+{
+    private readonly IConfiguration _configuration;
+
+    public ConfigurationService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public string GetSetting(string key)
+    {
+        return _configuration[key];
+    }
+}
+
+// Registering as Singleton
+services.AddSingleton<IConfigurationService, ConfigurationService>();
+```
+
+#### Scoped Scenario
+
+You have a database context that needs to be instantiated per web request to ensure that changes are saved correctly and not shared across requests.
+
+```csharp
+public interface IApplicationDbContext
+{
+    DbSet<User> Users { get; set; }
+    int SaveChanges();
+}
+
+public class ApplicationDbContext : DbContext, IApplicationDbContext
+{
+    public DbSet<User> Users { get; set; }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+}
+
+// Registering as Scoped
+services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
+```
+
+#### Transient Scenario
+
+You have an email service that sends emails. Each request to send an email should be independent of others.
+
+```csharp
+public interface IEmailSender
+{
+    void SendEmail(string to, string subject, string body);
+}
+
+public class EmailSender : IEmailSender
+{
+    public void SendEmail(string to, string subject, string body)
+    {
+        // Logic to send email
+    }
+}
+
+// Registering as Transient
+services.AddTransient<IEmailSender, EmailSender>();
+```
+
+### Summary
+
+- **AddSingleton**: Best for services that maintain state across the entire application lifespan and can be safely shared across threads. Ideal for configurations, logging, and caching services.
+- **AddScoped**: Best for services that maintain state within a single request or operation. Ideal for database contexts and business logic that should be consistent within a request.
+- **AddTransient**: Best for lightweight, stateless services that can be created and disposed of quickly. Ideal for utilities and short-lived operations like email sending or logging individual messages.
