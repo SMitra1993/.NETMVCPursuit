@@ -8,6 +8,7 @@
 - [Action Filter](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-filter-)
 - [Action Selector Vs Action Filter](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-selector-vs-action-filter-)
 - [Register Filter at different level](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#register-filter-at-different-level-)
+- [Action Filter Vs Result Filter](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-filter-vs-result-filter-)
 
 ## **Action Method:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
 
@@ -762,3 +763,20 @@ Filters can be applied at different levels:
 ### Summary
 
 ASP.NET MVC filters provide a powerful way to handle cross-cutting concerns in your application. By understanding and leveraging these filters, you can keep your code clean, modular, and maintainable. Each type of filter has a specific role, and they can be used together to address a wide range of scenarios in a structured manner.
+
+## **Action Filter Vs Result Filter:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/4%20-%20Action.md#action-)
+
+Here's a comparison of Action Filters and Result Filters in MVC .NET in a tabular form:
+
+| Feature/Aspect          | Action Filters                                   | Result Filters                                    |
+|-------------------------|--------------------------------------------------|--------------------------------------------------|
+| **Purpose**             | Used to execute code before and after an action method executes. | Used to execute code before and after the action result executes. |
+| **Common Use Cases**    | - Logging<br>- Authorization<br>- Exception handling<br>- Caching  | - Modifying the result<br>- Processing the result before rendering<br>- Caching |
+| **Execution Timing**    | - Before the action method (OnActionExecuting)<br>- After the action method (OnActionExecuted) | - Before the result execution (OnResultExecuting)<br>- After the result execution (OnResultExecuted) |
+| **Access to Controller Context** | Yes, access to the action method context, controller, and parameters. | Yes, access to the result context and controller. |
+| **Access to Action Result** | No, as they run before the action result is produced. | Yes, since they run just before and after the result is processed. |
+| **Usage**               | `[ActionFilter]` attribute or implement `IActionFilter` interface. | `[ResultFilter]` attribute or implement `IResultFilter` interface. |
+| **Order of Execution**  | Executed in the order they are defined before the action method, and in reverse order after the action method. | Executed in the order they are defined before the result processing, and in reverse order after the result processing. |
+| **Example**             | ```csharp [ActionFilter] public class LogActionFilter : IActionFilter { public void OnActionExecuting(ActionExecutingContext context) { // Pre-action logic } public void OnActionExecuted(ActionExecutedContext context) { // Post-action logic } } ``` | ```csharp [ResultFilter] public class ModifyResultFilter : IResultFilter { public void OnResultExecuting(ResultExecutingContext context) { // Pre-result logic } public void OnResultExecuted(ResultExecutedContext context) { // Post-result logic } } ``` |
+
+In summary, Action Filters are focused on the execution flow around the action methods, providing hooks to execute code before and after an action method runs. Result Filters, on the other hand, deal with the execution flow around the action results, providing hooks to execute code before and after the action result is processed. Both are essential for different scenarios in the request processing pipeline of MVC .NET.
