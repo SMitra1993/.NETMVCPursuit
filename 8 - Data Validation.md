@@ -814,8 +814,6 @@ Data annotations in ASP.NET MVC are used to configure the model classes by addin
 
 Here's a detailed explanation of some commonly used data annotations:
 
-In ASP.NET MVC, data annotations are used to apply validation rules, formatting instructions, and display behavior to model properties. These annotations are attributes applied to model classes and properties to enforce validation logic and UI hints. Here is an overview of the various data annotations available in .NET MVC:
-
 ### 1. Validation Attributes
 These attributes enforce validation rules on model properties.
 
