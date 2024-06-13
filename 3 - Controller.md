@@ -7,6 +7,7 @@
 - [Dependency Injection](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#dependency-injection-)
 - [Benefit of DI instead `new` keyword](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#benefit-of-di-instead-new-keyword-)
 - [AddSingleton vs AddScoped vs AddTransient](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addsingleton-vs-addscoped-vs-addtransient-)
+- [AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addsingleton-vs-addscoped-vs-addtransient-)
 
 ## **ASP.NET MVC Controller:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
@@ -908,3 +909,96 @@ services.AddTransient<IEmailSender, EmailSender>();
 - **AddSingleton**: Best for services that maintain state across the entire application lifespan and can be safely shared across threads. Ideal for configurations, logging, and caching services.
 - **AddScoped**: Best for services that maintain state within a single request or operation. Ideal for database contexts and business logic that should be consistent within a request.
 - **AddTransient**: Best for lightweight, stateless services that can be created and disposed of quickly. Ideal for utilities and short-lived operations like email sending or logging individual messages.
+
+## **AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages:**
+
+Here's a detailed explanation of `AddController`, `AddMvc`, `AddControllersWithViews`, and `AddRazorPages` in the context of ASP.NET Core, explaining their usage, what they include, and when to use them:
+
+### AddControllers
+
+- **Purpose**: `AddControllers` is used to register services required for API controllers in an ASP.NET Core application.
+- **Components Included**:
+  - **Controllers**: Adds support for API controllers, which are typically used for creating RESTful APIs.
+  - **Model Binding**: Automatically binds HTTP request data to action method parameters.
+  - **Validation**: Validates model data using data annotations and custom validation logic.
+  - **Routing**: Supports attribute routing and conventional routing for defining API endpoints.
+  - **Filters**: Allows the use of filters such as authorization, action filters, etc.
+  - **Dependency Injection (DI)**: Integrates with ASP.NET Core's built-in DI container.
+- **Usage Scenario**: Ideal for projects that are purely API-based and do not require server-side rendering of views or Razor Pages. Commonly used in microservices and backend services.
+
+### AddMvc
+
+- **Purpose**: `AddMvc` provides a comprehensive setup that includes support for controllers, views, and Razor Pages.
+- **Components Included**:
+  - **Controllers**: Supports both API and MVC controllers.
+  - **Views**: Adds support for Razor views, enabling server-side rendering of HTML.
+  - **Razor Pages**: Includes support for Razor Pages, a page-based programming model for building web UI.
+  - **Tag Helpers**: Provides HTML tag helpers to simplify the generation of standard HTML elements.
+  - **View Components**: Supports reusable components that can render HTML.
+  - **Routing**: Supports both attribute routing and conventional routing.
+  - **Model Binding & Validation**: Automatic binding and validation of models.
+  - **Filters**: Includes support for various types of filters.
+  - **Dependency Injection (DI)**: Integrates with the DI container.
+  - **Razor View Engine**: Enables the use of the Razor view engine for rendering views.
+- **Usage Scenario**: Best for full-featured web applications that utilize the MVC pattern and require both API endpoints and server-rendered views. It is the most inclusive option, suitable for traditional web apps, enterprise applications, and applications that need to support both web pages and APIs.
+
+### AddControllersWithViews
+
+- **Purpose**: `AddControllersWithViews` is used to add support for controllers and views, excluding Razor Pages.
+- **Components Included**:
+  - **Controllers**: Supports both API and MVC controllers.
+  - **Views**: Adds support for Razor views.
+  - **Tag Helpers**: Provides HTML tag helpers.
+  - **View Components**: Supports reusable components.
+  - **Routing**: Supports attribute routing and conventional routing.
+  - **Model Binding & Validation**: Automatic binding and validation of models.
+  - **Filters**: Includes support for various types of filters.
+  - **Dependency Injection (DI)**: Integrates with the DI container.
+  - **Razor View Engine**: Enables the use of the Razor view engine for rendering views.
+- **Usage Scenario**: Ideal for applications that follow the MVC pattern and require server-rendered views but do not need Razor Pages. This setup is a balance between API functionality and traditional web app views, making it suitable for many standard web applications.
+
+### AddRazorPages
+
+- **Purpose**: `AddRazorPages` is used to add support for Razor Pages in an ASP.NET Core application.
+- **Components Included**:
+  - **Razor Pages**: Adds support for Razor Pages, a page-centric model for building web UI.
+  - **Tag Helpers**: Provides HTML tag helpers.
+  - **View Components**: Supports reusable components.
+  - **Routing**: Supports routing specific to Razor Pages.
+  - **Model Binding & Validation**: Automatic binding and validation of models.
+  - **Filters**: Includes support for various types of filters.
+  - **Dependency Injection (DI)**: Integrates with the DI container.
+  - **Razor View Engine**: Enables the use of the Razor view engine for rendering Razor Pages.
+- **Usage Scenario**: Best for applications that are heavily focused on page-based development rather than the MVC pattern. Suitable for modern web applications that prefer the page-based approach for building UI, such as content management systems, simple web apps, and sites with straightforward navigation structures.
+
+### Summary Table
+
+| Feature                           | AddControllers                          | AddMvc                                     | AddControllersWithViews                   | AddRazorPages                             |
+|-----------------------------------|-----------------------------------------|-------------------------------------------|-------------------------------------------|-------------------------------------------|
+| **Primary Use**                   | Adds support for API controllers.       | Adds support for controllers, views, and Razor Pages. | Adds support for controllers and views, but not Razor Pages. | Adds support for Razor Pages.             |
+| **Controllers**                   | Yes                                     | Yes                                       | Yes                                       | No                                        |
+| **Views**                         | No                                      | Yes                                       | Yes                                       | No                                        |
+| **Razor Pages**                   | No                                      | Yes                                       | No                                        | Yes                                       |
+| **API Support**                   | Yes                                     | Yes                                       | Yes                                       | No                                        |
+| **Dependency Injection (DI)**     | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Routing**                       | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Tag Helpers**                   | No                                      | Yes                                       | Yes                                       | Yes                                       |
+| **View Components**               | No                                      | Yes                                       | Yes                                       | Yes                                       |
+| **Model Binding**                 | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Validation**                    | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Filter Support**                | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Data Annotations**              | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Razor View Engine**             | No                                      | Yes                                       | Yes                                       | Yes                                       |
+| **Static Files Middleware**       | No                                      | No                                        | No                                        | No                                        |
+| **Authorization**                 | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Endpoint Routing**              | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Custom Middleware**             | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **Swagger/OpenAPI Support**       | Yes                                     | Yes                                       | Yes                                       | No                                        |
+| **Web API**                       | Yes                                     | Yes                                       | Yes                                       | No                                        |
+| **Custom Razor View Locations**   | No                                      | Yes                                       | Yes                                       | Yes                                       |
+| **Custom View Engines**           | No                                      | Yes                                       | Yes                                       | No                                        |
+| **Custom Model Binder Providers** | Yes                                     | Yes                                       | Yes                                       | Yes                                       |
+| **View Localization**             | No                                      | Yes                                       | Yes                                       | Yes                                       |
+| **Configuration of Razor Pages Options** | No                              | Yes                                       | No                                        | Yes                                       |
+
+Each of these options serves different purposes and fits different project requirements. Choose the one that best aligns with your application's architecture and needs.
