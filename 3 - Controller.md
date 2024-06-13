@@ -7,7 +7,7 @@
 - [Dependency Injection](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#dependency-injection-)
 - [Benefit of DI instead `new` keyword](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#benefit-of-di-instead-new-keyword-)
 - [AddSingleton vs AddScoped vs AddTransient](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addsingleton-vs-addscoped-vs-addtransient-)
-- [AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addsingleton-vs-addscoped-vs-addtransient-)
+- [AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#addcontroller-vs-addmvc-vs-addcontrollerswithviews-vs-addrazorpages-)
 
 ## **ASP.NET MVC Controller:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
@@ -910,7 +910,7 @@ services.AddTransient<IEmailSender, EmailSender>();
 - **AddScoped**: Best for services that maintain state within a single request or operation. Ideal for database contexts and business logic that should be consistent within a request.
 - **AddTransient**: Best for lightweight, stateless services that can be created and disposed of quickly. Ideal for utilities and short-lived operations like email sending or logging individual messages.
 
-## **AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages:**
+## **AddController vs. AddMvc vs. AddControllersWithViews vs. AddRazorPages:** [🏠](https://github.com/SMitra1993/.NETMVCPursuit/blob/master/3%20-%20Controller.md#controller-)
 
 Here's a detailed explanation of `AddController`, `AddMvc`, `AddControllersWithViews`, and `AddRazorPages` in the context of ASP.NET Core, explaining their usage, what they include, and when to use them:
 
